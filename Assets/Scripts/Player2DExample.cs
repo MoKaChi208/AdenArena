@@ -46,7 +46,6 @@ public class Player2DExample : MonoBehaviour
 
         anim.SetFloat("MoveMagnitude", moveVector.magnitude);
 
-
         anim.SetFloat("LastMoveX", lastMoveDir.x); //Idle
 
 
