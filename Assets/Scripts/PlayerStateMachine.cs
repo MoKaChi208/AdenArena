@@ -14,6 +14,8 @@ public class PlayerStateMachine : MonoBehaviour
 
     [SerializeField]
     private Animator anim;
+    [SerializeField]
+
     void Start()
     {
         lastMoveDir.x = -1;
@@ -77,26 +79,32 @@ public class PlayerStateMachine : MonoBehaviour
     {
         if (state != State.DEAD && state != State.IDLE)
         {
-            anim.SetFloat("MoveMagnitude", moveVector.magnitude);
+            //anim.SetFloat("MoveMagnitude", moveVector.magnitude);
             anim.SetFloat("LastMoveX", lastMoveDir.x); //Idle
+            anim.Play("Stand");
             state = State.IDLE;
         }
     }
-    public void Walk(float speed)
+    public void Walk()
     {
         if (state != State.DEAD)
         {
             anim.SetFloat("MoveX", dirMove().x);//Walk
-            anim.SetFloat("MoveMagnitude", moveVector.magnitude);
+            //anim.SetFloat("MoveMagnitude", moveVector.magnitude);
             if (state != State.WALKING)
             {
-                //anim.SetFloat("MoveX", dirMove().x);//Walk
+                anim.SetFloat("MoveX", dirMove().x);//Walk
                 //anim.SetFloat("MoveMagnitude", moveVector.magnitude);
+                anim.Play("Walk");
                 state = State.WALKING;
             }
         }
     }
 
+    public void IdleWithWeapon()
+    {
+
+    }
     protected  void ControlAnimation()
     {
         if (false)
@@ -105,7 +113,7 @@ public class PlayerStateMachine : MonoBehaviour
         }
         else if (isRunning())
         {
-            Walk(1f);
+            Walk();
         }
         else
         {

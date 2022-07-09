@@ -12,12 +12,12 @@ public class CameraFollow : MonoBehaviour
         smoothSpeed = 2f;
     }
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         if (transform.position != target.position)
         {
             Vector3 targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, 2);
         }
     }
 }
