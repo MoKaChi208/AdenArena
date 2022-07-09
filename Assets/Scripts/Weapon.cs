@@ -6,31 +6,38 @@ public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefabs;
+    public GameObject sprite;
     public Joystick joystick;
 
     public float BulletForce;
+    private Vector3 faceDirection;
+
+    public float rotationSpeed = 720;
+    private float nextTimeOfFire = 0;
 
     void Update()
     {
+        rotationSpeed = 720;
         Vector3 moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
         Debug.Log(moveVector);
+
+
         if (moveVector != Vector3.zero)
         {
-            transform.rotation = Quaternion.LookRotation(Vector3.zero, moveVector);
-            transform.Translate(moveVector * 2 * Time.deltaTime, Space.World);
-            CmdShot(moveVector);
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            if (Time.time >= nextTimeOfFire)
+            {
+                CmdShot(moveVector);
+                nextTimeOfFire = Time.time + 1 / 0.9f;
+            }
         }
-        if (joystick.Horizontal == 0 && joystick.Vertical == 0)
-        {
-            
-        }
-
     }
     public void CmdShot(Vector3 dir)
     {
         GameObject bullet = (GameObject)Instantiate(bulletPrefabs, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(dir * 20, ForceMode2D.Impulse);
+        rb.AddForce(firePoint.up * 20, ForceMode2D.Impulse);
         Destroy(bullet, 2);
     }
 }

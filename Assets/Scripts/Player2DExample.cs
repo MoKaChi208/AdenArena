@@ -12,11 +12,16 @@ public class Player2DExample : MonoBehaviour
 
     [SerializeField]
     private Animator anim;
+    private void Awake()
+    {
+        joystick = GameObject.Find("Fixed Joystick Move").GetComponent<Joystick>();
+    }
     void Start()
     {
         lastMoveDir.x = -1;
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
+        
     }
     private void Update()
     {
@@ -37,7 +42,7 @@ public class Player2DExample : MonoBehaviour
         }
         //Debug.Log(moveVector);
         Animate();
-        Debug.Log("lastMove" + lastMoveDir);
+        //Debug.Log("lastMove" + lastMoveDir);
     }
 
     void Animate()

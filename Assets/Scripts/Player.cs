@@ -14,6 +14,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int maxMana = 100;
 
+
+    private void Awake()
+    {
+
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -45,4 +50,5 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
+
 }
