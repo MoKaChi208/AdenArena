@@ -1,60 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class WeaponGun : MonoBehaviour
-{
-    public Transform firePoint;
+public class WeaponGun : NetworkBehaviour
+
+{ 
     public GameObject bulletPrefabs;
     public Joystick joystick;
+    
 
-    public float BulletForce;
     private Vector3 moveVector;
-
     public float rotationSpeed = 720;
     private float nextTimeOfFire = 0;
 
 
+     void Start()
+    {
+        joystick = joystick = GameObject.Find("Fixed Joystick Shoot").GetComponent<Joystick>();
+    }
+
     void Update()
     {
-        rotationSpeed = 720;
-        moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
-        Debug.Log(moveVector);
-
-
-        if (moveVector != Vector3.zero)
+        if (GetComponentInParent<Player>().isLocalPlayer)
         {
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-            if (Time.time >= nextTimeOfFire)
+            moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
+            if (moveVector != Vector3.zero)
             {
-                CmdShot(moveVector);
-                nextTimeOfFire = Time.time + 1 / 0.9f;
+                if (Time.time >= nextTimeOfFire)
+                {
+                    CmdShot();
+                    nextTimeOfFire = Time.time + 1 / 0.9f;
+                }
+
             }
         }
     }
-    public void CmdShot(Vector3 dir)
-    {
-        GameObject bullet = (GameObject)Instantiate(bulletPrefabs, firePoint.position, firePoint.transform.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * 20, ForceMode2D.Impulse);
-        Destroy(bullet, 2);
-    }
+    
 
-    public Vector3 GetDirectionWeapon()
+    [Command]
+    public void CmdShot()
     {
-        return moveVector;
+        Transform firePoint = GameObject.Find("hitPoint").GetComponentInChildren<Transform>();
+            var bullet = (GameObject)Instantiate(bulletPrefabs, firePoint.position, firePoint.transform.rotation);
+            NetworkServer.Spawn(bullet);
+
     }
-    public Vector3 SetVectorForAnimation(Vector3 dir)
-    {
-        if (dir.x > 0)
-        {
-            dir.x = 1;
-        }
-        if (dir.x < 0)
-        {
-            dir.x = -1;
-        }
-        return dir;
-    }
+ 
 }

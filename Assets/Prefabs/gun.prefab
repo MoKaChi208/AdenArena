@@ -47,8 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 8926354459413724911}
   bulletPrefabs: {fileID: 8418179175100252849, guid: b47dc93bb4fcf97418c06fd2a11d391b, type: 3}
-  sprite: {fileID: 8926354460157587963}
-  joystick: {fileID: 0}
+  joystick: {fileID: 6851378146819691938, guid: 3825862156aec4d4fa6e870314e44d4d, type: 3}
   BulletForce: 0
   rotationSpeed: 0
 --- !u!1 &8926354459413724880
@@ -150,7 +149,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1411051981
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 6
   m_Sprite: {fileID: -6628414004274166170, guid: 973830a268e1be443a6c1bbfc7f2b22a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -1,19 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
+
 {
     [SerializeField]
     private int maxHealth = 100;
-    [SerializeField]
+    [SerializeField][SyncVar(hook = "OnChangeHealth")]
     private int currentHealth;
     [SerializeField]
     private HealthBar healthBar;
+    
+  
+  
+
 
     [SerializeField]
     private int maxMana = 100;
 
+    void OnChangeHealth(int Hp)
+    {
+        currentHealth = Hp;
+    }
 
     private void Awake()
     {
@@ -34,15 +44,21 @@ public class Player : MonoBehaviour
             CmdTakeDmg(20);
         }
     }
+    
+
+    [Command]
     public void CmdTakeDmg(int dmg)
     {
         currentHealth -= dmg;
-        healthBar.SetHealth(currentHealth);
+        healthBar.CmdSetHealth(currentHealth);
         if (currentHealth < 1)
         {
             RpcOnPlayerDeath();
         }
     }
+    
+
+    [ClientRpc]
     void RpcOnPlayerDeath()
     {
         transform.position = Vector3.zero;
@@ -50,5 +66,10 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
+    
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        CmdTakeDmg(10);
+    }
 }

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerStateMachine : MonoBehaviour
+public class PlayerStateMachine : NetworkBehaviour
 {
     private Rigidbody2D rigid;
     public float moveSpeed = 8f;
@@ -21,14 +22,16 @@ public class PlayerStateMachine : MonoBehaviour
         lastMoveDir.x = -1;
         anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
+        joystick = GameObject.Find("Fixed Joystick Move").GetComponent<Joystick>();
     }
     private void Update()
     {
-        
-        PlayerMove();
-        ControlAnimation();
+        if (isLocalPlayer)
+        {
+            PlayerMove();           
+        }
         //Animate();
-
+        ControlAnimation();
     }
 
     void PlayerMove()
@@ -75,7 +78,7 @@ public class PlayerStateMachine : MonoBehaviour
     enum State { IDLE, WALKING, GLIDING, JUMPING, LOADING_WRROW, AIMING, DEAD, FLINCH, ATTACK };
     private State state = State.WALKING;
 
-    public void Idle()
+    public void RpcIdle()
     {
         if (state != State.DEAD && state != State.IDLE)
         {
@@ -85,7 +88,7 @@ public class PlayerStateMachine : MonoBehaviour
             state = State.IDLE;
         }
     }
-    public void Walk()
+    public void RpcWalk()
     {
         if (state != State.DEAD)
         {
@@ -113,11 +116,11 @@ public class PlayerStateMachine : MonoBehaviour
         }
         else if (isRunning())
         {
-            Walk();
+            RpcWalk();
         }
         else
         {
-           Idle();
+           RpcIdle();
         }
     }
     public virtual bool isRunning()
