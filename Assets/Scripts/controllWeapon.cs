@@ -7,16 +7,14 @@ public class controllWeapon : NetworkBehaviour
 {
     public GameObject bulletPrefabs;
     public Joystick joystick;
-    public Transform hitPoint;
-    public Transform firePoint;
+
     public float BulletForce;
     private Vector3 moveVector;
 
     public float rotationSpeed = 720;
-    void Start()
+    public void Start()
     {
-        firePoint = hitPoint;
-        joystick = joystick = GameObject.Find("Fixed Joystick Shoot").GetComponent<Joystick>();
+        joystick = GameObject.Find("Fixed Joystick Shoot").GetComponent<Joystick>();
     }
 
     public void Update()
@@ -25,16 +23,13 @@ public class controllWeapon : NetworkBehaviour
         {
             return;
         }
-            firePoint = hitPoint;
-            rotationSpeed = 720;
             moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
 
             if (moveVector != Vector3.zero)
             {
                 Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);              
             }
-
     }
         public Vector3 GetDirectionWeapon()
         {
