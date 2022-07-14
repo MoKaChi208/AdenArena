@@ -34,6 +34,8 @@ public class Player : NetworkBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        AuthenCheck.check = true;
+
     }
 
     // Update is called once per frame
@@ -45,6 +47,17 @@ public class Player : NetworkBehaviour
         }
     }
     
+
+    [Command]
+    public /*static*/ void CmdShot(GameObject prefabs, GameObject hitPoint)
+    {
+
+        var bullet = (GameObject)Instantiate(prefabs, hitPoint.transform.position, hitPoint.transform.rotation);
+        NetworkServer.Spawn(bullet);
+    }
+    
+
+
 
     [Command]
     public void CmdTakeDmg(int dmg)

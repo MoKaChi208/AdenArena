@@ -20,7 +20,7 @@ public class PlayerStateMachine : NetworkBehaviour
     void Start()
     {
         lastMoveDir.x = -1;
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         joystick = GameObject.Find("Fixed Joystick Move").GetComponent<Joystick>();
     }
@@ -28,10 +28,12 @@ public class PlayerStateMachine : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            PlayerMove();           
+            PlayerMove();  
+            ControlAnimation();  
         }
+        
         //Animate();
-        ControlAnimation();
+        
     }
 
     void PlayerMove()
@@ -78,7 +80,7 @@ public class PlayerStateMachine : NetworkBehaviour
     enum State { IDLE, WALKING, GLIDING, JUMPING, LOADING_WRROW, AIMING, DEAD, FLINCH, ATTACK };
     private State state = State.WALKING;
 
-    public void RpcIdle()
+    public void CmdIdle()
     {
         if (state != State.DEAD && state != State.IDLE)
         {
@@ -88,7 +90,7 @@ public class PlayerStateMachine : NetworkBehaviour
             state = State.IDLE;
         }
     }
-    public void RpcWalk()
+    public void CmdWalk()
     {
         if (state != State.DEAD)
         {
@@ -108,6 +110,7 @@ public class PlayerStateMachine : NetworkBehaviour
     {
 
     }
+
     protected  void ControlAnimation()
     {
         if (false)
@@ -116,11 +119,11 @@ public class PlayerStateMachine : NetworkBehaviour
         }
         else if (isRunning())
         {
-            RpcWalk();
+            CmdWalk();
         }
         else
         {
-           RpcIdle();
+           CmdIdle();
         }
     }
     public virtual bool isRunning()

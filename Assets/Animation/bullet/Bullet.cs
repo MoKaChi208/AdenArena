@@ -10,10 +10,12 @@ public class NewBehaviourScript : MonoBehaviour
     private void Start()
     {
         rb.velocity = transform.right * speed;
+
         Destroy(gameObject, 2.0f);
     }
 
     
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

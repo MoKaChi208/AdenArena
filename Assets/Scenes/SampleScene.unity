@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c2fd873b12541b392f10ecc4846574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NetworkPort: 7777
+  m_NetworkPort: 5000
   m_ServerBindToIP: 0
   m_ServerBindAddress: 
   m_NetworkAddress: localhost
@@ -581,6 +581,7 @@ MonoBehaviour:
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 2203720149069054833, guid: 75d342aca2f7814468a0d38be60b6dcf, type: 3}
+  - {fileID: 1828113043961643048, guid: acd604804c07a7f4185c6ba673c97423, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -657,6 +658,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1397171862}
     m_Modifications:
+    - target: {fileID: 1357745684882083562, guid: 3825862156aec4d4fa6e870314e44d4d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 97.7521
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357745684882083562, guid: 3825862156aec4d4fa6e870314e44d4d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 97.7521
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357745684882083562, guid: 3825862156aec4d4fa6e870314e44d4d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000053883
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357745684882083562, guid: 3825862156aec4d4fa6e870314e44d4d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0000076294
+      objectReference: {fileID: 0}
+    - target: {fileID: 2532788279395280949, guid: 3825862156aec4d4fa6e870314e44d4d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 205.5042
+      objectReference: {fileID: 0}
+    - target: {fileID: 2532788279395280949, guid: 3825862156aec4d4fa6e870314e44d4d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 221.5362
+      objectReference: {fileID: 0}
+    - target: {fileID: 2532788279395280949, guid: 3825862156aec4d4fa6e870314e44d4d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1726.7521
+      objectReference: {fileID: 0}
+    - target: {fileID: 2532788279395280949, guid: 3825862156aec4d4fa6e870314e44d4d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 210.76807
+      objectReference: {fileID: 0}
     - target: {fileID: 3599607087858828078, guid: 3825862156aec4d4fa6e870314e44d4d, type: 3}
       propertyPath: m_Name
       value: Fixed Joystick Shoot
@@ -761,6 +794,38 @@ PrefabInstance:
     - target: {fileID: 1216713174817733901, guid: 7a50f3e678eb1ee4cba13841a47f21fb, type: 3}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216713174817733901, guid: 7a50f3e678eb1ee4cba13841a47f21fb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200.1601
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216713174817733901, guid: 7a50f3e678eb1ee4cba13841a47f21fb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 210.8481
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216713174817733901, guid: 7a50f3e678eb1ee4cba13841a47f21fb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 235.39209
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216713174817733901, guid: 7a50f3e678eb1ee4cba13841a47f21fb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 205.42407
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440778815877902692, guid: 7a50f3e678eb1ee4cba13841a47f21fb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 79.048
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440778815877902692, guid: 7a50f3e678eb1ee4cba13841a47f21fb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 95.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440778815877902692, guid: 7a50f3e678eb1ee4cba13841a47f21fb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.336
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440778815877902692, guid: 7a50f3e678eb1ee4cba13841a47f21fb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.008
       objectReference: {fileID: 0}
     - target: {fileID: 4082688891731827682, guid: 7a50f3e678eb1ee4cba13841a47f21fb, type: 3}
       propertyPath: m_Name

@@ -4,55 +4,57 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class WeaponGun : NetworkBehaviour
+    
 
-{ 
+{
     public GameObject bulletPrefabs;
     public Joystick joystick;
-    public HitPoint hitPoint;
-
+    [SerializeField]
+    private Transform hitPoint;
+    public float BulletForce;
     private Vector3 moveVector;
-    public float rotationSpeed = 720;
     private float nextTimeOfFire = 0;
+    public float rotationSpeed = 720;
+    public float fireRate = 1 / 10f;
 
 
-     void Start()
+
+    void Start()
     {
+
         joystick = joystick = GameObject.Find("Fixed Joystick Shoot").GetComponent<Joystick>();
+        //HitPoint  hitPoint = GameObject.Find("hitPoint").GetComponent<HitPoint>();
     }
+
+    
+
 
     void Update()
     {
-        
-        if (GetComponentInParent<Player>().isLocalPlayer)
-        { 
+
+        if (isLocalPlayer)
+        {
             moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
             if (moveVector != Vector3.zero)
             {
-               
-                hitPoint = GameObject.Find("hitPoint").GetComponent<HitPoint>();
-                //Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
-                //hitPoint.transform.rotation = Quaternion.RotateTowards(hitPoint.transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
                 if (Time.time >= nextTimeOfFire)
                 {
+                    //hitPoint = GameObject.Find("hitPoint").GetComponentInChildren<GameObject>();  
                     CmdShot();
-                    nextTimeOfFire = Time.time + 1 / 0.9f;
+                    nextTimeOfFire = Time.time + fireRate;
+                    Debug.Log("Pang Pang Pang") ;
                 }
-
             }
         }
     }
-  
-  
-
-
+    
     [Command]
-    public void CmdShot()
+    public /*static*/ void CmdShot( /*HitPoint hitPoint*/)
     {
-        var bullet = (GameObject)Instantiate(bulletPrefabs, hitPoint.transform.position, hitPoint.transform.rotation);
+        var bullet = (GameObject)Instantiate(bulletPrefabs, hitPoint.position, hitPoint.rotation);
         NetworkServer.Spawn(bullet);
     }
 
- 
-
 
 }
+
