@@ -107,7 +107,6 @@ GameObject:
   - component: {fileID: 2890179416566214975}
   - component: {fileID: 5362280100981155345}
   - component: {fileID: 3019737269205330222}
-  - component: {fileID: 8589750812957391961}
   - component: {fileID: 6924499045182338067}
   - component: {fileID: -1892452713349973107}
   m_Layer: 0
@@ -310,7 +309,7 @@ MonoBehaviour:
   - {fileID: 6553048070556420392}
   - {fileID: 6409500512956283419}
   remoteLayerName: RemotePlayer
---- !u!114 &8589750812957391961
+--- !u!114 &6924499045182338067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,35 +318,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1828113043961643048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e4fc1de7aae047a4bf138b9498c9b37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Target: {fileID: 4088322860723517616}
-  m_ChildIndex: 0
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_MovementThreshold: 0.001
-  m_InterpolateRotation: 0.5
-  m_InterpolateMovement: 0.5
---- !u!114 &6924499045182338067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1828113043961643048}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1140a3699b3957c48ab575d2f0b8651a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabs: {fileID: 2203720149069054833, guid: 75d342aca2f7814468a0d38be60b6dcf, type: 3}
   joystick: {fileID: 0}
-  hitPoint: {fileID: 1946069059501753929}
+  hitPoint: {fileID: 6705577488985572867}
+  Weapon: {fileID: 4106496136080017632}
   BulletForce: 0
   rotationSpeed: 720
-  fireRate: 1.01
+  fireRate: 0.12
 --- !u!114 &-1892452713349973107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,6 +797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6624373604954340935}
   - component: {fileID: 3572124667282906811}
+  - component: {fileID: 5118123099425057373}
   m_Layer: 0
   m_Name: handGun
   m_TagString: Untagged
@@ -857,6 +838,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
   rotationSpeed: 720
+--- !u!114 &5118123099425057373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106496136080017632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1 &4814603568555492732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1587,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6705577488985572867}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6780171c2afcf84c91b0cc475642cc1, type: 3}
   m_Name: 

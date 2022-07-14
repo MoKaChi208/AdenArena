@@ -80,9 +80,10 @@ public class Player : NetworkBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
     
+    
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        CmdTakeDmg(10);
-    }
+    //void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    CmdTakeDmg(10);
+    //}
 }

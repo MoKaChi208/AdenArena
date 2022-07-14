@@ -22,11 +22,8 @@ public class ControllHitPoint : NetworkBehaviour
     public void Start()
     {
         joystick = GameObject.Find("Fixed Joystick Shoot").GetComponent<Joystick>();
-        
 
     }
-    
-    
 
 
     public void Update()
@@ -69,7 +66,6 @@ public class ControllHitPoint : NetworkBehaviour
     [Command]
     public void CmdShot( /*HitPoint hitPoint*/)
     {
-
         var bullet = (GameObject)Instantiate(bulletPrefabs, transform.position, transform.rotation);
 
         NetworkServer.Spawn(bullet);

@@ -16,6 +16,7 @@ public class controllWeapon : MonoBehaviour
     public void Start()
     {
         joystick = GameObject.Find("Fixed Joystick Shoot").GetComponent<Joystick>();
+        
     }
 
     public void Update()

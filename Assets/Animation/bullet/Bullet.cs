@@ -14,16 +14,14 @@ public class NewBehaviourScript : MonoBehaviour
         Destroy(gameObject, 2.0f);
     }
 
-    
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Player player = collision.GetComponent<Player>();
-        if (player != null)
-        {
-            player.CmdTakeDmg(10);
-        }
-        Destroy(gameObject);
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    Player player = collision.GetComponent<Player>();
+    //    if (player != null)
+    //    {
+    //        player.CmdTakeDmg(10);
+    //    }
+    //    Destroy(gameObject);
+    //}
 }
