@@ -20,7 +20,6 @@ public class PlayerStateMachine : NetworkBehaviour
     void Start()
     {
         lastMoveDir.x = -1;
-        //anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         joystick = GameObject.Find("Fixed Joystick Move").GetComponent<Joystick>();
     }
@@ -32,7 +31,6 @@ public class PlayerStateMachine : NetworkBehaviour
             ControlAnimation();  
         }
         
-        //Animate();
         
     }
 

@@ -47,6 +47,7 @@ public class Player : NetworkBehaviour
         }
     }
     
+    
 
     [Command]
     public /*static*/ void CmdShot(GameObject prefabs, GameObject hitPoint)
@@ -80,10 +81,5 @@ public class Player : NetworkBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
     
-    
 
-    //void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    CmdTakeDmg(10);
-    //}
 }

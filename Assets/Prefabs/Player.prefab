@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefabs: {fileID: 2203720149069054833, guid: 75d342aca2f7814468a0d38be60b6dcf, type: 3}
   joystick: {fileID: 0}
-  hitPoint: {fileID: 6705577488985572867}
+  hitPoint: {fileID: 4586635963406662694}
   Weapon: {fileID: 4106496136080017632}
   BulletForce: 0
   rotationSpeed: 720
@@ -837,6 +837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
+  hitPoint: {fileID: 6705577488985572867}
   rotationSpeed: 720
 --- !u!114 &5118123099425057373
 MonoBehaviour:
@@ -1559,13 +1560,14 @@ GameObject:
   - component: {fileID: 1946069059501753929}
   - component: {fileID: 6960133141119640527}
   - component: {fileID: 6336783894723809647}
+  - component: {fileID: 4586635963406662694}
   m_Layer: 0
   m_Name: hitPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1946069059501753929
 Transform:
   m_ObjectHideFlags: 0
@@ -1630,6 +1632,20 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &4586635963406662694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6705577488985572867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d8b2cf837e260c439ca2fdc5869748b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RotationSpeed: 720
+  pivotObject: {fileID: 4106496136080017632}
 --- !u!1 &6766876790411915652
 GameObject:
   m_ObjectHideFlags: 0

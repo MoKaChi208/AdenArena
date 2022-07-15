@@ -18,6 +18,7 @@ public class ControllHitPoint : NetworkBehaviour
 
     public float rotationSpeed = 720;
     public float fireRate = 1 / 10f;
+    
 
     public void Start()
     {
@@ -29,7 +30,8 @@ public class ControllHitPoint : NetworkBehaviour
     public void Update()
     {
 
-        if (GetComponent<Player>().isServer) {
+        if (GetComponent<Player>().isServer)
+        {
             moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
 
             if (moveVector != Vector3.zero)
@@ -37,39 +39,10 @@ public class ControllHitPoint : NetworkBehaviour
 
                 Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-
-                if (Time.time >= nextTimeOfFire)
-                {
-                    //Player.CmdShot(bulletPrefabs, this.gameObject);
-                    CmdShot();
-                    nextTimeOfFire = Time.time + fireRate;
-                }
-
             }
         }
         
-        
 
-
-        //Transform parent = GameObject.Find("handGun").GetComponent<Transform>();
-
-        //Debug.Log(parent.rotation);
-
-        //transform.rotation = parent.transform.rotation;
-        //transform.localPosition = Vector3.zero;
-        //transform.localScale = Vector3.one;
-        
 
     }
-
-
-    [Command]
-    public void CmdShot( /*HitPoint hitPoint*/)
-    {
-        var bullet = (GameObject)Instantiate(bulletPrefabs, transform.position, transform.rotation);
-
-        NetworkServer.Spawn(bullet);
-    }
-
-
 }
