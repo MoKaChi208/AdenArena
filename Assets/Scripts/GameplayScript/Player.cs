@@ -7,6 +7,7 @@ public class Player : NetworkBehaviour
 
 {   
     
+
     [SerializeField]
     private int maxHealth = 100;
 
@@ -20,7 +21,8 @@ public class Player : NetworkBehaviour
     [SerializeField]
     private int maxMana = 100;
 
-
+    
+    
     void OnChangeHealth(int Hp)
     {
         currentHealth = Hp;
@@ -31,40 +33,41 @@ public class Player : NetworkBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-
     }
     
 
     // Update is called once per frame
     void Update()
     {
-        
 
         if (isLocalPlayer)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                CmdTakeDmg(10);
+                CmdTakeDmg(10,transform.name);
                 CmdPlusScore(1);
             }
-
         }
 
-        if (currentHealth < 1)
-        {
-            RpcOnPlayerDeath();
-        }
-        
+        healthBar.CmdSetHealth(currentHealth);
     }
     
 
-
     [Command]
-    public void CmdTakeDmg(int dmg)
+    public void CmdTakeDmg(int dmg,string shoter)
     {
         currentHealth -= dmg;
         healthBar.CmdSetHealth(currentHealth);
+        if (currentHealth < 1)
+        {
+            Debug.Log("Shot by" + shoter);
+            RpcOnPlayerDeath();
+            GameObject.Find(shoter).GetComponent<Player>().CmdPlusScore(1);
+
+
+        }
     }
+    
     
 
     

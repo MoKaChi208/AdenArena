@@ -55,7 +55,7 @@ public class WeaponGun : NetworkBehaviour
     [Command]
     public void CmdShot( Vector3 position, Vector3 rotation)
     {
-        var bullet = (GameObject)Instantiate(bulletPrefabs, position, Quaternion.Euler(rotation.x,rotation.y,rotation.z));
+        var bullet = (GameObject)Instantiate(bulletPrefabs, position, Quaternion.Euler(rotation.x,rotation.y,rotation.z),GetComponent<Player>().transform);
         NetworkServer.Spawn(bullet);
     }
 

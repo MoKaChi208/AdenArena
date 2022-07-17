@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-public class HealthBar : MonoBehaviour
+public class HealthBar : NetworkBehaviour
 {
+    
 
     public Slider slider;
     
@@ -14,7 +15,7 @@ public class HealthBar : MonoBehaviour
         slider.maxValue = health;
         slider.value = health;
     }
-    
+
 
     public void CmdSetHealth(int health)
     {

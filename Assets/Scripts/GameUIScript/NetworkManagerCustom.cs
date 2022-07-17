@@ -12,4 +12,12 @@ public class NetworkManagerCustom : NetworkManager
 
     }
 
+    public void JoinGame()
+    {
+
+        NetworkManager.singleton.networkAddress = "1.55.74.17";
+        NetworkManager.singleton.networkPort = int.Parse("5000");
+        NetworkManager.singleton.StartClient();
+
+    }
 }
