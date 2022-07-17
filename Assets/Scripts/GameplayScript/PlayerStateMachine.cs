@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerStateMachine : MonoBehaviour
+public class PlayerStateMachine : NetworkBehaviour
 {
     private Rigidbody2D rigid;
     public float moveSpeed = 8f;
@@ -19,16 +20,18 @@ public class PlayerStateMachine : MonoBehaviour
     void Start()
     {
         lastMoveDir.x = -1;
-        anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
+        joystick = GameObject.Find("Fixed Joystick Move").GetComponent<Joystick>();
     }
     private void Update()
     {
+        if (isLocalPlayer)
+        {
+            PlayerMove();  
+            ControlAnimation();  
+        }
         
-        PlayerMove();
-        ControlAnimation();
-        //Animate();
-
+        
     }
 
     void PlayerMove()
@@ -75,7 +78,7 @@ public class PlayerStateMachine : MonoBehaviour
     enum State { IDLE, WALKING, GLIDING, JUMPING, LOADING_WRROW, AIMING, DEAD, FLINCH, ATTACK };
     private State state = State.WALKING;
 
-    public void Idle()
+    public void CmdIdle()
     {
         if (state != State.DEAD && state != State.IDLE)
         {
@@ -85,7 +88,7 @@ public class PlayerStateMachine : MonoBehaviour
             state = State.IDLE;
         }
     }
-    public void Walk()
+    public void CmdWalk()
     {
         if (state != State.DEAD)
         {
@@ -105,6 +108,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
 
     }
+
     protected  void ControlAnimation()
     {
         if (false)
@@ -113,11 +117,11 @@ public class PlayerStateMachine : MonoBehaviour
         }
         else if (isRunning())
         {
-            Walk();
+            CmdWalk();
         }
         else
         {
-           Idle();
+           CmdIdle();
         }
     }
     public virtual bool isRunning()
