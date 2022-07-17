@@ -5,59 +5,58 @@ using UnityEngine.Networking;
 
 public class Player : NetworkBehaviour
 
-{
+{   
+    
     [SerializeField]
     private int maxHealth = 100;
-    [SerializeField][SyncVar(hook = "OnChangeHealth")]
-    private int currentHealth;
+
+    [SerializeField]
+    [SyncVar(hook = "OnChangeHealth")]
+    public int currentHealth;
     [SerializeField]
     private HealthBar healthBar;
-    
-  
-  
-
-
+    [SyncVar]
+    public int score;
     [SerializeField]
     private int maxMana = 100;
+
 
     void OnChangeHealth(int Hp)
     {
         currentHealth = Hp;
     }
 
-    private void Awake()
-    {
-
-    }
     // Start is called before the first frame update
-    void Start()
+    public override void OnStartClient()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-        AuthenCheck.check = true;
 
     }
+    
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        
+
+        if (isLocalPlayer)
         {
-            CmdTakeDmg(20);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                CmdTakeDmg(10);
+                CmdPlusScore(1);
+            }
+
         }
+
+        if (currentHealth < 1)
+        {
+            RpcOnPlayerDeath();
+        }
+        
     }
     
-    
-
-    [Command]
-    public /*static*/ void CmdShot(GameObject prefabs, GameObject hitPoint)
-    {
-
-        var bullet = (GameObject)Instantiate(prefabs, hitPoint.transform.position, hitPoint.transform.rotation);
-        NetworkServer.Spawn(bullet);
-    }
-    
-
 
 
     [Command]
@@ -65,11 +64,17 @@ public class Player : NetworkBehaviour
     {
         currentHealth -= dmg;
         healthBar.CmdSetHealth(currentHealth);
-        if (currentHealth < 1)
-        {
-            RpcOnPlayerDeath();
-        }
     }
+    
+
+    
+
+    [Command]
+    public void CmdPlusScore(int num)
+    {
+        score += num;
+    }
+
     
 
     [ClientRpc]

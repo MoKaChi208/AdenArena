@@ -6,20 +6,18 @@ using UnityEngine.Networking;
 [RequireComponent(typeof(Player))]
 public class PlayerSetup : NetworkBehaviour
 {
+
     [SerializeField]
     Behaviour[] componentsToDisable;
 
     [SerializeField]
-    string remoteLayerName = "RemotePlayer";
     Camera sceneCamera;
     
-
     void Start()
     {
         if (!isLocalPlayer)
         {
             DisableComponents();
-            AssignRemoteLayer();
         }
         else
         {
@@ -47,10 +45,7 @@ public class PlayerSetup : NetworkBehaviour
         transform.name = _ID;
     }
 
-    void AssignRemoteLayer()
-    {
-        gameObject.layer = LayerMask.NameToLayer(remoteLayerName);
-    }
+ 
 
     void DisableComponents()
     {
@@ -60,6 +55,7 @@ public class PlayerSetup : NetworkBehaviour
 
         }
     }
+    
 
     private void OnDisable()
     {

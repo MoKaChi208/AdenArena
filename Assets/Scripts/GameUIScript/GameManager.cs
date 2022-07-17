@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     private const string PLAYER_ID_PREFIX = "Player";
     private static Dictionary<string, Player> players = new Dictionary<string, Player>();
+    
+
 
     public static void RegisterPlayer(string _netID, Player _player)
     {
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
         return players[_playerID];
     }
 
+
     private void OnGUI()
     {
         //GUILayout.BeginArea(new Rect(Vector2.zero, new Vector2(2, 2)));
@@ -33,8 +36,10 @@ public class GameManager : MonoBehaviour
         GUILayout.BeginVertical();
         foreach (string _playerID in players.Keys)
         {
-            GUILayout.Label(_playerID +"    "+players[_playerID].transform.name);
+            GUILayout.Label(_playerID +"\t"+ players[_playerID].score);
         }
+        
+
         GUILayout.EndVertical();
         GUILayout.EndArea();
     }

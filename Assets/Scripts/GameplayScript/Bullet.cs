@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 20f;
     public Rigidbody2D rb;
-
+    public Player owner;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,15 +14,18 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, 2.0f);
     }
 
-    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Player player = collision.GetComponent<Player>();
         if (player != null)
-        {
-            player.CmdTakeDmg(10);
+        { player.CmdTakeDmg(20);
+            if (player.currentHealth < 0)
+            {
+                owner.CmdPlusScore(1); 
+            }
         }
         Destroy(gameObject);
     }
 }
+

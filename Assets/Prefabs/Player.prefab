@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 3019737269205330222}
   - component: {fileID: 6924499045182338067}
   - component: {fileID: -1892452713349973107}
+  - component: {fileID: 3604404322377839361}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -211,6 +212,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 8465452584578530887}
+  score: 0
   maxMana: 100
 --- !u!114 &73999812122732292
 MonoBehaviour:
@@ -307,8 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentsToDisable:
   - {fileID: 6553048070556420392}
-  - {fileID: 6409500512956283419}
-  remoteLayerName: RemotePlayer
+  sceneCamera: {fileID: 0}
 --- !u!114 &6924499045182338067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +349,26 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
+--- !u!114 &3604404322377839361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828113043961643048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4fc1de7aae047a4bf138b9498c9b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 6624373604954340935}
+  m_ChildIndex: 0
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!1 &2136545618065043970
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +596,8 @@ GameObject:
   - component: {fileID: 795416042442766941}
   - component: {fileID: 5634707367034629343}
   - component: {fileID: 6176890111266869356}
+  - component: {fileID: 1673393058658316120}
+  - component: {fileID: 4451042981402714204}
   m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
@@ -598,8 +621,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.023, y: 0.002000004}
-  m_SizeDelta: {x: -0.14080003, y: -0.09195}
+  m_AnchoredPosition: {x: 0.023000002, y: 0.002000004}
+  m_SizeDelta: {x: -0.1408, y: -0.0919}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5634707367034629343
 CanvasRenderer:
@@ -639,6 +662,61 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1673393058658316120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015912338506893406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &4451042981402714204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4015912338506893406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d6c522af31447398568cc65334232b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!1 &4088561212435687415
 GameObject:
   m_ObjectHideFlags: 0

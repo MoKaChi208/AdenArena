@@ -298,3 +298,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   rb: {fileID: 2202747276285758833}
+  owner: {fileID: 9130692471518100426, guid: acd604804c07a7f4185c6ba673c97423, type: 3}

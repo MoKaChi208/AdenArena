@@ -11,7 +11,7 @@ public class WeaponGun : NetworkBehaviour
     public Joystick joystick;
     [SerializeField]
     private HitPoint hitPoint;
-    private HitPoint firePoint;
+    //private HitPoint firePoint;
     public GameObject Weapon;
     public float BulletForce;
     private Vector3 moveVector;
@@ -22,7 +22,7 @@ public class WeaponGun : NetworkBehaviour
 
     public void Start()
     {
-        firePoint = Instantiate(hitPoint, hitPoint.transform.position, hitPoint.transform.rotation,GetComponent<Player>().transform );
+        //firePoint = Instantiate(hitPoint, hitPoint.transform.position, hitPoint.transform.rotation,GetComponent<Player>().transform );
         joystick = joystick = GameObject.Find("Fixed Joystick Shoot").GetComponent<Joystick>();
     }
 
@@ -32,19 +32,21 @@ public class WeaponGun : NetworkBehaviour
         moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
         if (moveVector != Vector3.zero)
         {
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
-            firePoint.transform.rotation = Quaternion.RotateTowards(Weapon.transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            //Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
+            //firePoint.transform.rotation = Quaternion.RotateTowards(Weapon.transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
 
             //fire with multiple firePoint, very fun, should keep
             //firePoint.transform.RotateAround(GetComponentInChildren<Weapon>().GetComponentInChildren<controllWeapon>().transform.position, new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
-            firePoint.transform.position = hitPoint.transform.position;
+            //firePoint.transform.position = hitPoint.transform.position;
+            //firePoint.transform.rotation = hitPoint.transform.rotation;
+
+
             if (Time.time >= nextTimeOfFire)
             {
                 if (isLocalPlayer)
                 {
-                CmdShot(firePoint.transform.position, firePoint.transform.eulerAngles);
+                CmdShot(hitPoint.transform.position, hitPoint.transform.eulerAngles);
                 nextTimeOfFire = Time.time + fireRate;
-                Debug.Log("Pang Pang Pang") ;
                 }
             }
         }
@@ -53,7 +55,6 @@ public class WeaponGun : NetworkBehaviour
     [Command]
     public void CmdShot( Vector3 position, Vector3 rotation)
     {
-        Debug.Log("Call shoot");
         var bullet = (GameObject)Instantiate(bulletPrefabs, position, Quaternion.Euler(rotation.x,rotation.y,rotation.z));
         NetworkServer.Spawn(bullet);
     }
