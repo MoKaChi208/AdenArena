@@ -44,33 +44,53 @@ public class Player : NetworkBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                CmdTakeDmg(10,transform.name);
+                //CmdTakeDmg(10,transform.name);
                 CmdPlusScore(1);
             }
         }
 
+
         healthBar.CmdSetHealth(currentHealth);
     }
-    
+
+    // Use this on server
+    //[Command]
+    //public void CmdTakeDmg(int dmg,string shoter)
+    //{
+    //    currentHealth -= dmg;
+    //    healthBar.CmdSetHealth(currentHealth);
+    //    if (currentHealth < 1)
+    //    {
+    //        Debug.Log("Shot by" + shoter);
+    //        RpcOnPlayerDeath();
+    //        GameObject.Find(shoter).GetComponent<Player>().CmdPlusScore(1);
+
+
+    //    }
+    //}
+
+
+
+    //use this on client
+    //[Command]
+    //public void CmdTakeDmg(int dmg)
+    //{
+    //    currentHealth -= dmg;
+    //    healthBar.CmdSetHealth(currentHealth);
+    //    if (currentHealth < 1)
+    //    {
+    //        RpcOnPlayerDeath();
+    //    }
+
+    //}
 
     [Command]
-    public void CmdTakeDmg(int dmg,string shoter)
+    public void CmdTakeDmg()
     {
-        currentHealth -= dmg;
-        healthBar.CmdSetHealth(currentHealth);
-        if (currentHealth < 1)
-        {
-            Debug.Log("Shot by" + shoter);
-            RpcOnPlayerDeath();
-            GameObject.Find(shoter).GetComponent<Player>().CmdPlusScore(1);
-
-
-        }
     }
-    
-    
 
-    
+
+
 
     [Command]
     public void CmdPlusScore(int num)

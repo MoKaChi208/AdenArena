@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
 {
     private const string PLAYER_ID_PREFIX = "Player";
     private static Dictionary<string, Player> players = new Dictionary<string, Player>();
-    
+    //private static List<Player> listplayer = new List<Player>()
 
+    
 
     public static void RegisterPlayer(string _netID, Player _player)
     {
