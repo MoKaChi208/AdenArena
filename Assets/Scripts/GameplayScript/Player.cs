@@ -5,7 +5,10 @@ using UnityEngine.Networking;
 
 public class Player : NetworkBehaviour
 
-{   
+{
+    [SerializeField]
+    [SyncVar]
+    private string username;
     
 
     [SerializeField]
@@ -14,15 +17,18 @@ public class Player : NetworkBehaviour
     [SerializeField]
     [SyncVar(hook = "OnChangeHealth")]
     public int currentHealth;
+
     [SerializeField]
     private HealthBar healthBar;
+
     [SyncVar]
     public int score;
+
     [SerializeField]
     private int maxMana = 100;
 
     
-    
+
     void OnChangeHealth(int Hp)
     {
         currentHealth = Hp;
@@ -31,6 +37,7 @@ public class Player : NetworkBehaviour
     // Start is called before the first frame update
     public override void OnStartClient()
     {
+        username = DBManager.username;
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
@@ -54,21 +61,21 @@ public class Player : NetworkBehaviour
     }
 
     // Use this on server
-    //[Command]
-    //public void CmdTakeDmg(int dmg,string shoter)
-    //{
-    //    currentHealth -= dmg;
-    //    healthBar.CmdSetHealth(currentHealth);
-    //    if (currentHealth < 1)
-    //    {
-    //        Debug.Log("Shot by" + shoter);
-    //        RpcOnPlayerDeath();
-    //        GameObject.Find(shoter).GetComponent<Player>().CmdPlusScore(1);
+    [Command]
+    public void CmdTakeDmg(int dmg, string shoter)
+    {
+        currentHealth -= dmg;
+        healthBar.CmdSetHealth(currentHealth);
+        if (currentHealth < 1)
+        {
 
-
-    //    }
-    //}
-
+            Debug.Log("Shot by" + shoter);
+            RpcOnPlayerDeath();
+            GameObject.Find(shoter).GetComponent<Player>().CmdPlusScore(1);
+        }
+    }
+    
+    
 
 
     //use this on client
@@ -84,10 +91,10 @@ public class Player : NetworkBehaviour
 
     //}
 
-    [Command]
-    public void CmdTakeDmg()
-    {
-    }
+    //[Command]
+    //public void CmdTakeDmg()
+    //{
+    //}
 
 
 

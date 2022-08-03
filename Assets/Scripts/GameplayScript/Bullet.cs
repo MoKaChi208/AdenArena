@@ -21,9 +21,9 @@ public class Bullet : MonoBehaviour
        Player player = collision.GetComponent<Player>();
         if (player != null)
         {
-            //player.CmdTakeDmg(20, transform.parent.transform.name);
+            player.CmdTakeDmg(20, transform.parent.transform.name);
             //player.CmdTakeDmg(20);
-            player.CmdTakeDmg();
+            //player.CmdTakeDmg();
         }
         Destroy(gameObject);
     }

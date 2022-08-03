@@ -17,8 +17,9 @@ public class PlayerStateMachine : NetworkBehaviour
     private Animator anim;
     [SerializeField]
 
-    void Start()
+    public override void OnStartClient()
     {
+        base.OnStartClient();
         lastMoveDir.x = -1;
         rigid = GetComponent<Rigidbody2D>();
         joystick = GameObject.Find("Fixed Joystick Move").GetComponent<Joystick>();

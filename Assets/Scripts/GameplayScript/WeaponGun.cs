@@ -21,8 +21,9 @@ public class WeaponGun : NetworkBehaviour
     public float fireRate = 1 / 10f;
 
 
-    public void Start()
+    public override void OnStartClient()
     {
+        base.OnStartClient();
         //firePoint = Instantiate(hitPoint, hitPoint.transform.position, hitPoint.transform.rotation,GetComponent<Player>().transform );
         joystick = joystick = GameObject.Find("Fixed Joystick Shoot").GetComponent<Joystick>();
     }
@@ -33,8 +34,8 @@ public class WeaponGun : NetworkBehaviour
         moveVector = (Vector3.right * joystick.Horizontal + Vector3.up * joystick.Vertical);
         if (moveVector != Vector3.zero)
         {
-            //Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
-            //firePoint.transform.rotation = Quaternion.RotateTowards(Weapon.transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, moveVector);
+            Weapon.transform.rotation = Quaternion.RotateTowards(Weapon.transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
 
             //fire with multiple firePoint, very fun, should keep
             //firePoint.transform.RotateAround(GetComponentInChildren<Weapon>().GetComponentInChildren<controllWeapon>().transform.position, new Vector3(0, 0, 1), rotationSpeed * Time.deltaTime);
