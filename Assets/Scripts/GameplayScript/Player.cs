@@ -78,6 +78,7 @@ public class Player : NetworkBehaviour
     
 
 
+
     //use this on client
     //[Command]
     //public void CmdTakeDmg(int dmg)
