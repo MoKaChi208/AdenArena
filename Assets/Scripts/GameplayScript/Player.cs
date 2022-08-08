@@ -35,7 +35,8 @@ public class Player : NetworkBehaviour
     }
 
     // Start is called before the first frame update
-    public override void OnStartClient()
+
+    public void Start()
     {
         username = DBManager.username;
         currentHealth = maxHealth;
@@ -60,22 +61,21 @@ public class Player : NetworkBehaviour
         healthBar.CmdSetHealth(currentHealth);
     }
 
-    // Use this on server
-    [Command]
-    public void CmdTakeDmg(int dmg, string shoter)
-    {
-        currentHealth -= dmg;
-        healthBar.CmdSetHealth(currentHealth);
-        if (currentHealth < 1)
-        {
+    //// Use this on server
 
-            Debug.Log("Shot by" + shoter);
-            RpcOnPlayerDeath();
-            GameObject.Find(shoter).GetComponent<Player>().CmdPlusScore(1);
-        }
-    }
-    
-    
+    //[Command]
+    //public void CmdTakeDmg(int dmg, string shoter)
+    //{
+
+    //    currentHealth -= dmg;
+    //    healthBar.CmdSetHealth(currentHealth);
+    //    if (currentHealth < 1)
+    //    {
+    //        Debug.Log("Shot by" + shoter);
+    //        RpcOnPlayerDeath();
+    //        GameObject.Find(shoter).GetComponent<Player>().CmdPlusScore(1);
+    //    }
+    //}
 
 
 
@@ -92,12 +92,14 @@ public class Player : NetworkBehaviour
 
     //}
 
-    //[Command]
-    //public void CmdTakeDmg()
-    //{
-    //}
 
 
+    [Command]
+    public void CmdTakeDmg()
+    {
+    }
+    
+    
 
 
     [Command]
@@ -105,6 +107,7 @@ public class Player : NetworkBehaviour
     {
         score += num;
     }
+    
 
     
 

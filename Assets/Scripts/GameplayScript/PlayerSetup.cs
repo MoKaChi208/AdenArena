@@ -57,14 +57,15 @@ public class PlayerSetup : NetworkBehaviour
     }
     
 
+
     private void OnDisable()
     {
         if (sceneCamera != null)
         {
             sceneCamera.gameObject.SetActive(true);
         }
-
-        GameManager.UnRegisterPlayer(transform.name);
+        GameManager.UnRegisterPlayer(transform.name, GetComponent<Player>());
     }
+    
 
 }

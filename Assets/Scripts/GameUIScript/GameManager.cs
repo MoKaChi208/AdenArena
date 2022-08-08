@@ -21,9 +21,11 @@ public class GameManager : MonoBehaviour
     }
     
 
-    public static void UnRegisterPlayer(string _playerID)
+    public static void UnRegisterPlayer(string _playerID,Player _player)
     {
         players.Remove(_playerID);
+        listplayer.Remove(_player);
+
     }
 
     public static Player GetPlayer(string _playerID)
