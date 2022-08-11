@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-
 public static class DBManager
 
 {
+    
 
     public static string username;
 

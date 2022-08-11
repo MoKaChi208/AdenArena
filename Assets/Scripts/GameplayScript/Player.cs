@@ -8,7 +8,7 @@ public class Player : NetworkBehaviour
 {
     [SerializeField]
     [SyncVar]
-    private string username;
+    public string username;
     
 
     [SerializeField]
@@ -38,16 +38,23 @@ public class Player : NetworkBehaviour
 
     public void Start()
     {
-        username = DBManager.username;
+        
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
+
+    public override void OnStartLocalPlayer()
+    {
+        base.OnStartLocalPlayer();
+        username = DBManager.username;
+    }
     
+
+
 
     // Update is called once per frame
     void Update()
     {
-
         if (isLocalPlayer)
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -91,7 +98,7 @@ public class Player : NetworkBehaviour
     //    }
 
     //}
-
+    
 
 
     [Command]
